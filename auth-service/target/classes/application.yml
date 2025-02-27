@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: auth-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.182.1:8848
+        enabled: true
+
+
+jwt:
+  secret-key: "mySuperSecureSecretKeyAtLeast32CharactersLong123!"
+  expiration-ms: 3600000 # 1小时（单位：毫秒）
+
+grpc:
+  server:
+    port: 9090
+
+
+
+#logging:
+#  level:
+#    com.alibaba.nacos: DEBUG
+#    com.alibaba.nacos.client: DEBUG
+#    net.devh: DEBUG # 开启 gRPC 调试日志
+#    org.springframework: INFO
+server:
+  port: 8080

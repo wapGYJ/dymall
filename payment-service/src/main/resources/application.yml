@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: payment-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dymall?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 192.168.182.1:8848
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      update-strategy: not_null
+  type-aliases-package: com.wapgyj.paymentservice.model
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+
+
+server:
+  port: 8086
+
+grpc:
+  server:
+    port: 9096
+
+  client:
+    order-service:
+      address: 'static://localhost:9094'
+      negotiation-type: plaintext
+
+
+
+alipay:
+  appId: 9021000143691515
+  appPrivateKey: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCEM9u7zFU4rHvk3JhyZ7j1kKB52HGL202Ui1sH3UxH2TAUbheYui23btX+TbAq0Q8b3vC7lkS1Coq+lca8j68zJUDYU07os5YzTtOajC5321wsOd/MkxT09hhGbhdP1NfSeSLJEh65aj1vk0OE3WPBW+YQqI+kI9+IQX0C0QwVJiwNdicQs4PpbxHNEV2akl4Rue2JCtMR4pmhDxlWh5h6/ASRaeH6vEMoFbxzmoWr9/1FRAbX3N4kf1RLIlzE9pk3hlkZ3e30X/7iwNfpmgQUdidcJ+IKSx+Es5QFBDstxUvUKGQ0sDCvHsnxA7g0ekJsVAFF22mgFD/UAoTaxLLDAgMBAAECggEATGPey2RltgrMyFDDchAHKzY31FBCRCsjZ/siTagNBNM12ghHcEPcWMsdsgVYD1Wf4l3vQqWw69+8jiXjoV9xQB99mcKBrSrgVqNs2De6Ph2t5AxJCl/O00FEg6XnqIR3dTHz7LWgtUjzWP6CHEsE8lzU0rljzte/uW8F+lOrJKiAseWyu1u/MbaHvBY3NiuMfIHEBCnWBKO/TsJF607tdSa7X7i4K0tkKj2LTQBc30x0L52dwXfrAi2Kqjtyo6H8t1dffkN8AF/BufOBjddPnBL+B35AlitCzsSTgpB/OnPm3wiv+UI7+YEQ43RuWItXWSupCufBCkmXQ6gnJxtwGQKBgQDnrGbpSGWW2XkiUi9Th6uc/YOolFO6/vSvV4nsgkSJYL1TBvLvxmv7+HVEL08lP1aUeGWRhp6vkb0qU8+Z6zjxdTQBkZAgmwrlnJuNFX0QENbe5LG9+qIR+TyhaOcQjuUmtM9JQxUrXKFOYXcY7jR1s4HksC9tXdk/lOdmJffClwKBgQCSFZYra+dKLGp/ZjzhU+wOdkQmsq7fWmR33kezVPS14a50mhK8A9G7ValQrrOQnOqA6cpMCFZAZ+ivLt7i5l1T3sSKzcjsQ5mlXBgj8R1zTGCpwxzFbEuyCFCwrVotn1kPwsVVzEgIGjfrCDPGYBd+UHbcnAxKckAS+G67ERKStQKBgHiRfaFsvwoJtgQJl322PrbeLPW/8+9+nmLegPYoOXjxcrZSCH6G2k3w2T6aDGuLEgkEu39H+y/N/g+YPJOTGjh3UZB7a/G8HqiunzmGdGa3DMxFYsdHN6948XfjO1WfuFwzfylWkx7U/1HmYXAFECItQK1+j8AwNk7jtKWxnsaTAoGBAInH+l7x4q++vKN0Vi9f6+CoAxdMqErZArFb4NxvYG67cMNhHhJet82suYjzfUED/tmfp8GWi2Mrnfa8ilQPWi7kiRMxjDPqflvMRKiBnXlFrFXxRI2f2rULyq8YkVk+Vc3bsit+BOI/eEYg8lREBWSJl9HzDFSa9Xvu/OFK9O2RAoGBAOcAnnHmTPaAFbQG5YZ9MCC+4TmSP/Q0UcZS4sSrFZnciSD7x0bSKLHwtyTuamJIIakwE3zFwtHzV10JkdqxPFIYUAgdEhS/HmJOL2ehEQYsxi9u23sPhz+WGXDqbRaYo3ayj+kkgAcmEI8oYo8msQqvf74Xa2YxEmP5wxBLHBRk
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvWNK5ljjYm/f+QzFEC9Y6NHEu+pa5Efz4fQOS02vjcH29gXBrOMUMp/nbElt/e7I61im7J790v2Cjbl5e/PhWbDn/LiAuZvqPEi3azsEwhBnAklIlcAqwqH1/uy4m3sdIW+I2zpGoxeSfKZVKggPEzHp2NQIKuNMPgz9KZXGrAtRrzUAYh61XATmSm8l2zdMuK49biKM9RMcZj+kioIWVcJj7Yr1nK96YakCTZ783+FPP2vffHzpYjYPy8x00HLySbS4lAVEIUhzsFmYKhO/fhrVIVCcCizPnrrcGYlo/qkhpfAPPipPtMkOMhyxFb2UqmHrPzhnloxF4Jfj7h4TkQIDAQAB
+  notifyUrl: http://xmm7uc.natappfree.cc/payments/notify
+  gateway: https://openapi-sandbox.dl.alipaydev.com/gateway.do

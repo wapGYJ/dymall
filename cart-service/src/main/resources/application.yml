@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: cart-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dymall?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 192.168.182.1:8848
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      update-strategy: not_null
+  type-aliases-package: com.wapgyj.cartservice.model
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+
+
+
+server:
+  port: 8083
+
+
+grpc:
+  server:
+    port: 9093

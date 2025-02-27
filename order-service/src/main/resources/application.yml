@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dymall?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 192.168.182.1:8848
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      update-strategy: not_null
+  type-aliases-package: com.wapgyj.orderservice.model
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+
+
+
+
+server:
+  port: 8084
+
+
+grpc:
+  server:
+    port: 9094

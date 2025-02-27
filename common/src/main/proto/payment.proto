@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package payment;
+
+option java_multiple_files =false;
+option java_package="com.wapgyj.common.proto";
+option java_outer_classname="PaymentProto";
+
+
+service PaymentService {
+  rpc Charge(ChargeReq) returns (ChargeResp) {}
+  rpc GetTransaction(GetTransactionReq) returns (GetTransactionResp) {}
+}
+
+
+
+message ChargeReq {
+  float amount = 1;
+  string order_id = 2;
+  uint32 user_id = 3;
+}
+
+message ChargeResp {
+  string alipay_Form =1;
+}
+
+message GetTransactionReq {
+  string order_id = 1;
+}
+
+message GetTransactionResp {
+  string order_id = 1;
+  uint32 user_id = 2;
+  string transaction_id = 3;
+  string status = 4;
+  float amount = 5;
+  string paid_at = 6;
+}  
